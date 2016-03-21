@@ -18,7 +18,7 @@ var assets = {
   ]
 };
 
-var paths = {
+var app = {
   scripts: [
     'src/scripts/*.js',
     'src/scripts/**/*.js'
@@ -38,30 +38,27 @@ gulp.task('assets-scripts', function() {
     .pipe(gulp.dest('dist'))
 });
 
-gulp.task('assets-styles', function() {
-  return gulp.src(assets.styles)
-    .pipe(concat('assets.min.js'))
-    .pipe(gulp.dest('dist'))
-});
-
 /**
- * Build scripts
+ * Build app scripts
  */
-gulp.task('scripts', function() {
-  return gulp.src(paths.scripts)
-    .pipe(uglify())
+gulp.task('app-scripts', function() {
+  return gulp.src(app.scripts)
     .pipe(concat('app.min.js'))
     .pipe(gulp.dest('dist'));
 });
 
-/**
- * Build less.
- * The pipe order is significant since style.less depends on mixins.less
- * So we will first concat files, then build with less.
- */
-gulp.task('styles', function() {
-    return gulp.src(paths.styles)
-        .pipe(concat('styles.min.css'))
+/*
+ Build styles
+*/
+gulp.task('assets-styles', function() {
+  return gulp.src(assets.styles)
+    .pipe(concat('assets.min.css'))
+    .pipe(gulp.dest('dist'))
+});
+
+gulp.task('app-styles', function() {
+    return gulp.src(app.styles)
+        .pipe(concat('app.min.css'))
         .pipe(sass({
             compress: true
         }))
@@ -71,8 +68,8 @@ gulp.task('styles', function() {
 /**
  * Watch less files for changes
  */
-gulp.task('watch-less', function () {
-  gulp.watch(paths.styles, ['styles']);
+gulp.task('watch-scripts', function () {
+  gulp.watch([app.scripts], ['app-scripts']);
 });
 
 /** 
