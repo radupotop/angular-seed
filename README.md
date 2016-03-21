@@ -3,7 +3,7 @@ Angular-seed
 
 An AngularJS project seed which aims to keep it simple.
 
-* [Caddy](https://caddyserver.com) as a http server
+* [Caddy](https://caddyserver.com) as a http server (optional)
 * Gulp as task runner
 * Bower for managing front-end assets
 * Sass for styles
