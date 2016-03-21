@@ -10,12 +10,14 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var sass   = require('gulp-sass');
 
-/**
- * Define paths.
- * Files will be read in the order found here.
- * So for example, classes.js will be read before controllers.js because
- * the controllers depend on classes.
- */
+var assets = {
+  scripts: [
+    'assets/jquery/dist/jquery.min.js',
+    'assets/angular/angular.min.js',
+    'assets/bootstrap/dist/js/bootstrap.min.js'
+  ]
+};
+
 var paths = {
   scripts: [
     'src/scripts/*.js',
@@ -26,6 +28,21 @@ var paths = {
     'src/styles/**/*.scss',
   ]
 };
+
+/*
+ Build assets
+*/
+gulp.task('assets-scripts', function() {
+  return gulp.src(assets.scripts)
+    .pipe(concat('assets.min.js'))
+    .pipe(gulp.dest('dist'))
+});
+
+gulp.task('assets-styles', function() {
+  return gulp.src(assets.styles)
+    .pipe(concat('assets.min.js'))
+    .pipe(gulp.dest('dist'))
+});
 
 /**
  * Build scripts
