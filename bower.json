@@ -1,0 +1,23 @@
+{
+  "name": "angular-seed",
+  "authors": [
+    "Radu Potop <radu@wooptoo.com>"
+  ],
+  "color": "true",
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "angular": "^1.5.2"
+  }
+}
