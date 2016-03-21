@@ -9,6 +9,7 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var sass   = require('gulp-sass');
+var exec   = require('gulp-exec');
 
 var assets = {
   scripts: [
@@ -63,6 +64,11 @@ gulp.task('app-styles', function() {
             compress: true
         }))
         .pipe(gulp.dest('dist'));
+});
+
+gulp.task('server', function(){
+  gulp.src('')
+    .pipe(exec('caddy -conf Caddyfile', {continueOnError: false}));
 });
 
 /**
