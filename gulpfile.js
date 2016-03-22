@@ -15,6 +15,8 @@ var assets = {
   scripts: [
     'assets/jquery/dist/jquery.min.js',
     'assets/angular/angular.min.js',
+    'assets/angular-route/angular-route.min.js',
+    'assets/angular-resource/angular-resource.min.js',
     'assets/bootstrap/dist/js/bootstrap.min.js'
   ],
   styles: [
