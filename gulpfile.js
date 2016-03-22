@@ -62,9 +62,7 @@ gulp.task('app-scripts', function() {
 gulp.task('app-styles', function() {
     return gulp.src(app.styles)
         .pipe(concat('app.min.css'))
-        .pipe(sass({
-            compress: true
-        }))
+        .pipe(sass({outputStyle: 'compact'}))
         .pipe(gulp.dest('dist'));
 });
 
