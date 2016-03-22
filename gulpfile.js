@@ -77,19 +77,20 @@ gulp.task('serve', function(){
     .pipe(exec('caddy -conf Caddyfile', {continueOnError: false}));
 });
 
-/**
- * Watch less files for changes
+/*
+ Watch for changes
  */
-gulp.task('watch-scripts', function () {
+gulp.task('watch', function () {
   gulp.watch([app.scripts], ['app-scripts']);
+  gulp.watch([app.styles], ['app-styles']);
 });
 
 /** 
  * Run development tasks
  */
-gulp.task('default', ['styles', 'watch-less']);
+gulp.task('default', ['assets', 'app', 'watch', 'serve']);
 
 /** 
  * Build production app
  */
-gulp.task('build', ['scripts', 'styles']);
+gulp.task('build', ['assets', 'app']);
