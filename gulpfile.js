@@ -32,7 +32,12 @@ var app = {
   styles: [
     'src/styles/*.scss',
     'src/styles/**/*.scss',
-  ]
+  ],
+  views: [
+    'src/views/*.html',
+    'src/views/**/*.html'
+  ],
+  index: 'src/index.html'
 };
 
 /*
@@ -60,16 +65,26 @@ gulp.task('app-scripts', function() {
 });
 
 gulp.task('app-styles', function() {
-    return gulp.src(app.styles)
-        .pipe(concat('app.min.css'))
-        .pipe(sass({outputStyle: 'compact'}))
-        .pipe(gulp.dest('dist'));
+  return gulp.src(app.styles)
+      .pipe(concat('app.min.css'))
+      .pipe(sass({outputStyle: 'compact'}))
+      .pipe(gulp.dest('dist'));
+});
+
+gulp.task('app-views', function() {
+  
+  gulp.src(app.views)
+    .pipe(gulp.dest('dist/views'))
+
+  gulp.src(app.index)
+    .pipe(gulp.dest('dist/'))
+
 });
 
 
 gulp.task('assets', ['assets-scripts', 'assets-styles']);
 
-gulp.task('app', ['app-scripts', 'app-styles']);
+gulp.task('app', ['app-scripts', 'app-styles', 'app-views']);
 
 
 gulp.task('serve', function(){
@@ -83,6 +98,7 @@ gulp.task('serve', function(){
 gulp.task('watch', function () {
   gulp.watch([app.scripts], ['app-scripts']);
   gulp.watch([app.styles], ['app-styles']);
+  gulp.watch([app.views, app.index], ['app-views']);
 });
 
 /** 
