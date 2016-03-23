@@ -105,11 +105,16 @@ gulp.task('watch', function () {
 });
 
 /** 
- * Run development tasks
- */
-gulp.task('default', ['assets', 'app', 'watch', 'serve']);
-
-/** 
  * Build production app
  */
-gulp.task('build', ['assets', 'app']);
+gulp.task('prod', ['assets', 'app']);
+
+/** 
+ * Run development tasks
+ */
+gulp.task('dev', ['assets', 'app', 'watch', 'serve']);
+
+/*
+ Default task
+*/
+gulp.task('default', ['dev']);
