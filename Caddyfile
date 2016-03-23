@@ -1,5 +1,6 @@
 # start the server with caddy -conf Caddyfile
 
-localhost:2020
-
-browse
+localhost:2020 {
+    root dist
+    browse
+}

@@ -1,7 +1,7 @@
 /*
  A bare-bones HTTP interceptor
 */
-eReceipts.factory('HttpInterceptor', function($q, $rootScope) {
+App.factory('HttpInterceptor', function($q, $rootScope) {
 
     return {
         'request': function(config) {

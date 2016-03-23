@@ -16,7 +16,7 @@ App.config(function($logProvider, $routeProvider, $httpProvider){
 
     $routeProvider
         .when('/', {
-            template: 'home.html',
+            templateUrl: 'views/home.html',
             controller: 'HomeCtrl'
         })
         .otherwise({
