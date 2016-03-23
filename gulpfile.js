@@ -33,6 +33,9 @@ var app = {
     'src/styles/*.scss',
     'src/styles/**/*.scss',
   ],
+  images: [
+    'src/images/*'
+  ],
   views: [
     'src/views/*.html',
     'src/views/**/*.html'
