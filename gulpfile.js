@@ -10,6 +10,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var sass   = require('gulp-sass');
 var exec   = require('gulp-exec');
+var templateCache = require('gulp-angular-templatecache');
 
 var assets = {
   scripts: [
@@ -77,10 +78,11 @@ gulp.task('app-styles', function() {
 gulp.task('app-views', function() {
   
   gulp.src(app.views)
-    .pipe(gulp.dest('dist/views'))
+    .pipe(templateCache())
+    .pipe(gulp.dest('dist'))
 
   gulp.src(app.index)
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest('dist'))
 
 });
 

@@ -1,7 +1,12 @@
 /*
+ Template cache module.
+*/
+angular.module('templates', []);
+
+/*
  Main application module.
 */
-var App = angular.module('App', ['ngRoute', 'ngResource']);
+var App = angular.module('App', ['ngRoute', 'ngResource', 'templates']);
 
 /*
  App configuration. Enable things as needed.
@@ -16,7 +21,7 @@ App.config(function($logProvider, $routeProvider, $httpProvider){
 
     $routeProvider
         .when('/', {
-            templateUrl: 'views/home.html',
+            templateUrl: 'home.html',
             controller: 'HomeCtrl'
         })
         .otherwise({
