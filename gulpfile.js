@@ -10,6 +10,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var sass   = require('gulp-sass');
 var exec   = require('gulp-exec');
+var sourcemaps = require('gulp-sourcemaps');
 var templateCache = require('gulp-angular-templatecache');
 var ngAnnotate = require('gulp-ng-annotate');
 
@@ -65,16 +66,20 @@ gulp.task('assets-styles', function() {
  */
 gulp.task('app-scripts', function() {
   return gulp.src(app.scripts)
+    .pipe(sourcemaps.init())
     // .pipe(ngAnnotate())
     .pipe(uglify({mangle: false}))
     .pipe(concat('app.min.js'))
+    .pipe(sourcemaps.write('maps'))
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('app-styles', function() {
   return gulp.src(app.styles)
+      .pipe(sourcemaps.init())
       .pipe(concat('app.min.css'))
       .pipe(sass({outputStyle: 'compact'}))
+      .pipe(sourcemaps.write('maps'))
       .pipe(gulp.dest('dist'));
 });
 
