@@ -3,12 +3,22 @@ Angular-seed
 
 An AngularJS project seed which aims to keep it simple.
 
-* [Caddy](https://caddyserver.com) as a http server (optional)
-* Gulp as task runner
+* [Caddy](https://caddyserver.com) for serving http (optional)
+* Gulp as the task runner
 * Bower for managing front-end assets
 * Sass for styles
-* Plain JavaScript (Maybe ES6 in the future)
-* NPM is only used for satisfying Gulp dependencies
+* Plain JavaScript (Maybe ES6/TypeScript in the future)
+* Support for source maps
+* Serve Angular templates from the templateCache
+* Support for Angular minification with ng-annotate
+
+
+Quick start
+-----------
+
+npm install
+bower install
+gulp
 
 
 Usage
