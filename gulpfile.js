@@ -11,6 +11,7 @@ var uglify = require('gulp-uglify');
 var sass   = require('gulp-sass');
 var exec   = require('gulp-exec');
 var templateCache = require('gulp-angular-templatecache');
+var ngAnnotate = require('gulp-ng-annotate');
 
 var assets = {
   scripts: [
@@ -64,6 +65,7 @@ gulp.task('assets-styles', function() {
  */
 gulp.task('app-scripts', function() {
   return gulp.src(app.scripts)
+    // .pipe(ngAnnotate())
     .pipe(uglify({mangle: false}))
     .pipe(concat('app.min.js'))
     .pipe(gulp.dest('dist'));
