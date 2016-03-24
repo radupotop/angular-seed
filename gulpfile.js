@@ -13,6 +13,8 @@ var exec   = require('gulp-exec');
 var sourcemaps = require('gulp-sourcemaps');
 var templateCache = require('gulp-angular-templatecache');
 var ngAnnotate = require('gulp-ng-annotate');
+var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
 
 var assets = {
   scripts: [
@@ -94,6 +96,12 @@ gulp.task('app-views', function() {
 
 });
 
+gulp.task('jshint', function() {
+  gulp.src(app.scripts)
+    .pipe(jshint())
+    .pipe(jshint.reporter(stylish))
+});
+
 
 gulp.task('assets', ['assets-scripts', 'assets-styles']);
 
@@ -109,7 +117,7 @@ gulp.task('serve', function(){
  Watch for changes
  */
 gulp.task('watch', function () {
-  gulp.watch([app.scripts], ['app-scripts']);
+  gulp.watch([app.scripts], ['app-scripts', 'jshint']);
   gulp.watch([app.styles], ['app-styles']);
   gulp.watch([app.views, app.index], ['app-views']);
 });
@@ -117,7 +125,7 @@ gulp.task('watch', function () {
 /** 
  * Build production app
  */
-gulp.task('prod', ['assets', 'app']);
+gulp.task('prod', ['assets', 'app', 'jshint']);
 
 /** 
  * Run development tasks
