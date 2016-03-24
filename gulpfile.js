@@ -64,6 +64,7 @@ gulp.task('assets-styles', function() {
  */
 gulp.task('app-scripts', function() {
   return gulp.src(app.scripts)
+    .pipe(uglify({mangle: false}))
     .pipe(concat('app.min.js'))
     .pipe(gulp.dest('dist'));
 });
