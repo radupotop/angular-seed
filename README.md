@@ -1,7 +1,7 @@
 Angular-seed
 ============
 
-An AngularJS project seed which aims to keep it simple.
+An AngularJS 1.x project seed which aims to keep it simple.
 
 * [Caddy](https://caddyserver.com) for serving http (optional)
 * Gulp as the task runner
@@ -11,6 +11,7 @@ An AngularJS project seed which aims to keep it simple.
 * Support for source maps
 * Serve Angular templates from the templateCache
 * Support for Angular minification with ng-annotate
+* JShint scripts
 
 
 Quick start
