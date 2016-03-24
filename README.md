@@ -16,9 +16,9 @@ An AngularJS project seed which aims to keep it simple.
 Quick start
 -----------
 
-npm install
-bower install
-gulp
+`npm install`  
+`bower install`  
+`gulp`
 
 
 Usage
