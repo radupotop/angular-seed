@@ -15,6 +15,7 @@ var templateCache = require('gulp-angular-templatecache');
 var ngAnnotate = require('gulp-ng-annotate');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
+var livereload = require('gulp-livereload');
 
 var assets = {
   scripts: [
@@ -73,7 +74,8 @@ gulp.task('app-scripts', function() {
     .pipe(uglify({mangle: false}))
     .pipe(concat('app.min.js'))
     .pipe(sourcemaps.write('maps'))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist'))
+    .pipe(livereload());
 });
 
 gulp.task('app-styles', function() {
@@ -82,7 +84,8 @@ gulp.task('app-styles', function() {
       .pipe(concat('app.min.css'))
       .pipe(sass({outputStyle: 'compact'}))
       .pipe(sourcemaps.write('maps'))
-      .pipe(gulp.dest('dist'));
+      .pipe(gulp.dest('dist'))
+      .pipe(livereload());
 });
 
 gulp.task('app-views', function() {
@@ -90,6 +93,7 @@ gulp.task('app-views', function() {
   gulp.src(app.views)
     .pipe(templateCache())
     .pipe(gulp.dest('dist'))
+    .pipe(livereload());
 
   gulp.src(app.index)
     .pipe(gulp.dest('dist'))
@@ -120,6 +124,7 @@ gulp.task('watch', function () {
   gulp.watch([app.scripts], ['app-scripts', 'jshint']);
   gulp.watch([app.styles], ['app-styles']);
   gulp.watch([app.views, app.index], ['app-views']);
+  livereload.listen();
 });
 
 /** 
