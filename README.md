@@ -32,4 +32,4 @@ Usage
 * `gulp assets` - only compile assets
 * `gulp app` - only compile app files
 * `gulp serve` - starts a web server on `localhost:2020`
-* `gulp watch` - watches scripts for changes
+* `gulp watch` - watches scripts for changes, enable livereload
