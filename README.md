@@ -12,7 +12,7 @@ An AngularJS 1.x project seed which aims to keep it simple.
 * Serve Angular templates from the templateCache
 * Support for Angular minification with ng-annotate
 * JShint scripts
-* Support for LiveReload
+* Support for LiveReload (requires the browser plugin)
 
 
 Quick start
