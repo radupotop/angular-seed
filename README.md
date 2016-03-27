@@ -13,6 +13,7 @@ An AngularJS 1.x project seed which aims to keep it simple.
 * Support for Angular minification with ng-annotate
 * JShint scripts
 * Support for LiveReload (requires the browser plugin)
+* Configure which tasks to run through `gulpconfig.json`
 
 
 Quick start

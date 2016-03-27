@@ -136,6 +136,7 @@ gulp.task('livereload', function(){
  */
 gulp.task('prod', ['assets', 'app', 'jshint']);
 
+
 var devTasks = ['assets', 'app', 'watch'];
 
 if(config.enableServe) {
