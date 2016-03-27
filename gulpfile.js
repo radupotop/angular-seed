@@ -6,6 +6,7 @@ var gulp = require('gulp');
 /**
  * Load plugins
  */
+var config = require('./gulpconfig.json');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var sass   = require('gulp-sass');
@@ -132,10 +133,16 @@ gulp.task('watch', function () {
  */
 gulp.task('prod', ['assets', 'app', 'jshint']);
 
+var devTasks = ['assets', 'app', 'watch'];
+
+if(config.enableServer) {
+  devTasks.push('serve');
+}
+
 /** 
  * Run development tasks
  */
-gulp.task('dev', ['assets', 'app', 'watch', 'serve']);
+gulp.task('dev', devTasks);
 
 /*
  Default task
