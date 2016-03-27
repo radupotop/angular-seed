@@ -125,6 +125,9 @@ gulp.task('watch', function () {
   gulp.watch([app.scripts], ['app-scripts', 'jshint']);
   gulp.watch([app.styles], ['app-styles']);
   gulp.watch([app.views, app.index], ['app-views']);
+});
+
+gulp.task('livereload', function(){
   livereload.listen();
 });
 
@@ -135,8 +138,12 @@ gulp.task('prod', ['assets', 'app', 'jshint']);
 
 var devTasks = ['assets', 'app', 'watch'];
 
-if(config.enableServer) {
+if(config.enableServe) {
   devTasks.push('serve');
+}
+
+if(config.enableLivereload) {
+  devTasks.push('livereload');
 }
 
 /** 

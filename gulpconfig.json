@@ -1,3 +1,4 @@
 {
-	"enableServer": true
+	"enableServe": true,
+	"enableLivereload": true
 }
