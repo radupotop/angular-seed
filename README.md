@@ -3,7 +3,7 @@ Angular-seed
 
 An AngularJS 1.x project seed which aims to keep it simple.
 
-* [Caddy](https://caddyserver.com) for serving http (optional)
+* Development http server
 * Gulp as the task runner
 * Bower for managing front-end assets
 * Sass for styles
@@ -32,5 +32,5 @@ Usage
 * `gulp dev`  - build app for development - compile assets, compile app, start server, watch for changes
 * `gulp assets` - only compile assets
 * `gulp app` - only compile app files
-* `gulp serve` - starts a web server on `localhost:2020`
+* `gulp serve` - starts a web server on `localhost:8080`
 * `gulp watch` - watches scripts for changes, enable livereload

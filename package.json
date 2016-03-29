@@ -7,6 +7,7 @@
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^1.8.0",
     "gulp-concat": "^2.6.0",
+    "gulp-connect": "^3.2.2",
     "gulp-exec": "^2.1.2",
     "gulp-jshint": "^2.0.0",
     "gulp-livereload": "^3.8.1",

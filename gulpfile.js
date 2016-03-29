@@ -10,13 +10,12 @@ var config = require('./gulpconfig.json');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var sass   = require('gulp-sass');
-var exec   = require('gulp-exec');
 var sourcemaps = require('gulp-sourcemaps');
 var templateCache = require('gulp-angular-templatecache');
 var ngAnnotate = require('gulp-ng-annotate');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
-var livereload = require('gulp-livereload');
+var connect = require('gulp-connect');
 
 var assets = {
   scripts: [
@@ -76,7 +75,7 @@ gulp.task('app-scripts', function() {
     .pipe(concat('app.min.js'))
     .pipe(sourcemaps.write('maps'))
     .pipe(gulp.dest('dist'))
-    .pipe(livereload());
+    .pipe(connect.reload());
 });
 
 gulp.task('app-styles', function() {
@@ -86,7 +85,7 @@ gulp.task('app-styles', function() {
       .pipe(sass({outputStyle: 'compact'}))
       .pipe(sourcemaps.write('maps'))
       .pipe(gulp.dest('dist'))
-      .pipe(livereload());
+      .pipe(connect.reload());
 });
 
 gulp.task('app-views', function() {
@@ -94,7 +93,7 @@ gulp.task('app-views', function() {
   gulp.src(app.views)
     .pipe(templateCache())
     .pipe(gulp.dest('dist'))
-    .pipe(livereload());
+    .pipe(connect.reload());
 
   gulp.src(app.index)
     .pipe(gulp.dest('dist'))
@@ -114,8 +113,10 @@ gulp.task('app', ['app-scripts', 'app-styles', 'app-views']);
 
 
 gulp.task('serve', function(){
-  gulp.src('')
-    .pipe(exec('caddy -conf Caddyfile', {continueOnError: false}));
+  connect.server({
+    root: 'dist',
+    livereload: config.enableLivereload
+  });
 });
 
 /*
@@ -125,10 +126,6 @@ gulp.task('watch', function () {
   gulp.watch([app.scripts], ['app-scripts', 'jshint']);
   gulp.watch([app.styles], ['app-styles']);
   gulp.watch([app.views, app.index], ['app-views']);
-});
-
-gulp.task('livereload', function(){
-  livereload.listen();
 });
 
 /** 
@@ -141,10 +138,6 @@ var devTasks = ['assets', 'app', 'watch'];
 
 if(config.enableServe) {
   devTasks.push('serve');
-}
-
-if(config.enableLivereload) {
-  devTasks.push('livereload');
 }
 
 /** 
