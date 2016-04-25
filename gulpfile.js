@@ -100,23 +100,13 @@ gulp.task('app-views', function() {
 
 });
 
+/*
+ Lint JS files
+*/
 gulp.task('jshint', function() {
   gulp.src(app.scripts)
     .pipe(jshint())
     .pipe(jshint.reporter(stylish))
-});
-
-
-gulp.task('assets', ['assets-scripts', 'assets-styles']);
-
-gulp.task('app', ['app-scripts', 'app-styles', 'app-views']);
-
-
-gulp.task('serve', function(){
-  connect.server({
-    root: 'dist',
-    livereload: config.enableLivereload
-  });
 });
 
 /*
@@ -127,6 +117,21 @@ gulp.task('watch', function () {
   gulp.watch([app.styles], ['app-styles']);
   gulp.watch([app.views, app.index], ['app-views']);
 });
+
+/*
+ Run a development http server
+*/
+gulp.task('serve', function(){
+  connect.server({
+    root: 'dist',
+    livereload: config.enableLivereload
+  });
+});
+
+
+gulp.task('assets', ['assets-scripts', 'assets-styles']);
+
+gulp.task('app', ['app-scripts', 'app-styles', 'app-views']);
 
 /** 
  * Build production app
@@ -149,3 +154,10 @@ gulp.task('dev', devTasks);
  Default task
 */
 gulp.task('default', ['dev']);
+
+
+/*
+ Aliases
+*/
+gulp.task('production', ['prod']);
+gulp.task('development', ['dev']);
