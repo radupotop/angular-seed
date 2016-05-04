@@ -11,9 +11,13 @@ var App = angular.module('App', ['ngRoute', 'ngResource', 'templates']);
 /*
  App configuration. Enable things as needed.
 */
-App.config(function($logProvider, $routeProvider, $httpProvider){
+App.config(function($logProvider, $routeProvider, $httpProvider, $compileProvider){
 
-    $logProvider.debugEnabled(localStorage.debug == true); // jshint ignore:line
+    var enableDebug = localStorage.debug == true; // jshint ignore:line
+
+    $logProvider.debugEnabled(enableDebug);
+    
+    $compileProvider.debugInfoEnabled(enableDebug);
 
     // $httpProvider.interceptors.push('HttpInterceptor');
 
