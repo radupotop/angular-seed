@@ -14,6 +14,7 @@ An AngularJS 1.x project seed which aims to keep it simple.
 * JShint scripts
 * Support for LiveReload
 * Configure which tasks to run through `gulpconfig.json`
+* Enable application debugging by setting `localStorage.debug = 1`
 
 
 Quick start
