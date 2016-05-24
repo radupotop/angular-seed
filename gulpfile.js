@@ -52,13 +52,13 @@ var app = {
 /*
  Build assets
 */
-gulp.task('assets-scripts', function() {
+gulp.task('assets-scripts', () => {
   return gulp.src(assets.scripts)
     .pipe(concat('assets.min.js'))
     .pipe(gulp.dest('dist'))
 });
 
-gulp.task('assets-styles', function() {
+gulp.task('assets-styles', () => {
   return gulp.src(assets.styles)
     .pipe(concat('assets.min.css'))
     .pipe(gulp.dest('dist'))
@@ -67,7 +67,7 @@ gulp.task('assets-styles', function() {
 /*
  Build app
  */
-gulp.task('app-scripts', function() {
+gulp.task('app-scripts', () => {
   return gulp.src(app.scripts)
     .pipe(sourcemaps.init())
     // .pipe(ngAnnotate())
@@ -78,7 +78,7 @@ gulp.task('app-scripts', function() {
     .pipe(connect.reload());
 });
 
-gulp.task('app-styles', function() {
+gulp.task('app-styles', () => {
   return gulp.src(app.styles)
       .pipe(sourcemaps.init())
       .pipe(concat('app.min.css'))
@@ -88,7 +88,7 @@ gulp.task('app-styles', function() {
       .pipe(connect.reload());
 });
 
-gulp.task('app-views', function() {
+gulp.task('app-views', () => {
   
   gulp.src(app.views)
     .pipe(templateCache())
@@ -103,7 +103,7 @@ gulp.task('app-views', function() {
 /*
  Lint JS files
 */
-gulp.task('jshint', function() {
+gulp.task('jshint', () => {
   gulp.src(app.scripts)
     .pipe(jshint())
     .pipe(jshint.reporter(stylish))
@@ -112,7 +112,7 @@ gulp.task('jshint', function() {
 /*
  Watch for changes
  */
-gulp.task('watch', function () {
+gulp.task('watch', () => {
   gulp.watch([app.scripts], ['app-scripts', 'jshint']);
   gulp.watch([app.styles], ['app-styles']);
   gulp.watch([app.views, app.index], ['app-views']);
@@ -121,7 +121,7 @@ gulp.task('watch', function () {
 /*
  Run a development http server
 */
-gulp.task('serve', function(){
+gulp.task('serve', () => {
   connect.server({
     root: 'dist',
     livereload: config.enableLivereload
