@@ -127,9 +127,9 @@ gulp.task('jshint', () => {
 /*
  Watch for changes
  */
-gulp.task('watch', () => {
+gulp.task('watch-dev', () => {
   gulp.watch([app.scripts], ['app-scripts-dev', 'jshint']);
-  gulp.watch([app.styles], ['app-styles']);
+  gulp.watch([app.styles], ['app-styles-dev']);
   gulp.watch([app.views, app.index], ['app-views']);
 });
 
@@ -155,7 +155,7 @@ gulp.task('app-dev', ['app-scripts-dev', 'app-styles-dev', 'app-views']);
 gulp.task('prod', ['assets', 'app-prod', 'jshint']);
 
 
-var devTasks = ['assets', 'app-dev', 'jshint', 'watch'];
+var devTasks = ['assets', 'app-dev', 'jshint', 'watch-dev'];
 
 if(config.enableServe) {
   devTasks.push('serve');
