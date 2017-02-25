@@ -67,23 +67,38 @@ gulp.task('assets-styles', () => {
 /*
  Build app
  */
-gulp.task('app-scripts', () => {
+gulp.task('app-scripts-prod', () => {
   return gulp.src(app.scripts)
     .pipe(sourcemaps.init())
-    // .pipe(ngAnnotate())
-    .pipe(uglify({mangle: false}))
+    .pipe(ngAnnotate())
+    .pipe(uglify())
     .pipe(concat('app.min.js'))
     .pipe(sourcemaps.write('maps'))
     .pipe(gulp.dest('dist'))
     .pipe(connect.reload());
 });
 
-gulp.task('app-styles', () => {
+gulp.task('app-scripts-dev', () => {
+  return gulp.src(app.scripts)
+    .pipe(concat('app.min.js'))
+    .pipe(gulp.dest('dist'))
+    .pipe(connect.reload());
+});
+
+gulp.task('app-styles-prod', () => {
   return gulp.src(app.styles)
       .pipe(sourcemaps.init())
       .pipe(concat('app.min.css'))
       .pipe(sass({outputStyle: 'compact'}))
       .pipe(sourcemaps.write('maps'))
+      .pipe(gulp.dest('dist'))
+      .pipe(connect.reload());
+});
+
+gulp.task('app-styles-dev', () => {
+  return gulp.src(app.styles)
+      .pipe(concat('app.min.css'))
+      .pipe(sass())
       .pipe(gulp.dest('dist'))
       .pipe(connect.reload());
 });
@@ -113,7 +128,7 @@ gulp.task('jshint', () => {
  Watch for changes
  */
 gulp.task('watch', () => {
-  gulp.watch([app.scripts], ['app-scripts', 'jshint']);
+  gulp.watch([app.scripts], ['app-scripts-dev', 'jshint']);
   gulp.watch([app.styles], ['app-styles']);
   gulp.watch([app.views, app.index], ['app-views']);
 });
@@ -131,15 +146,16 @@ gulp.task('serve', () => {
 
 gulp.task('assets', ['assets-scripts', 'assets-styles']);
 
-gulp.task('app', ['app-scripts', 'app-styles', 'app-views']);
+gulp.task('app-prod', ['app-scripts-prod', 'app-styles-prod', 'app-views']);
+gulp.task('app-dev', ['app-scripts-dev', 'app-styles-dev', 'app-views']);
 
 /** 
  * Build production app
  */
-gulp.task('prod', ['assets', 'app', 'jshint']);
+gulp.task('prod', ['assets', 'app-prod', 'jshint']);
 
 
-var devTasks = ['assets', 'app', 'watch'];
+var devTasks = ['assets', 'app-dev', 'jshint', 'watch'];
 
 if(config.enableServe) {
   devTasks.push('serve');
