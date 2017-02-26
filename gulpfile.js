@@ -23,10 +23,15 @@ var assets = {
     'assets/angular/angular.min.js',
     'assets/angular-route/angular-route.min.js',
     'assets/angular-resource/angular-resource.min.js',
-    'assets/bootstrap/dist/js/bootstrap.min.js'
+    'assets/semantic/dist/semantic.min.js',
+    'assets/lodash/dist/lodash.core.min.js'
   ],
   styles: [
-    'assets/bootstrap/dist/css/bootstrap.min.css'
+    'assets/semantic/dist/semantic.min.css'
+  ],
+  // Files that need to be copied as is. Use glob **/*
+  copy: [
+    'assets/semantic/dist/themes/**/*'
   ]
 };
 
@@ -62,6 +67,11 @@ gulp.task('assets-styles', () => {
   return gulp.src(assets.styles)
     .pipe(concat('assets.min.css'))
     .pipe(gulp.dest('dist'))
+});
+
+gulp.task('assets-copy', () => {
+  return gulp.src(assets.copy)
+    .pipe(gulp.dest('dist/themes'))
 });
 
 /*
@@ -144,7 +154,7 @@ gulp.task('serve', () => {
 });
 
 
-gulp.task('assets', ['assets-scripts', 'assets-styles']);
+gulp.task('assets', ['assets-scripts', 'assets-styles', 'assets-copy']);
 
 gulp.task('app-prod', ['app-scripts-prod', 'app-styles-prod', 'app-views']);
 gulp.task('app-dev', ['app-scripts-dev', 'app-styles-dev', 'app-views']);
