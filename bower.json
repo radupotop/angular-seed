@@ -16,7 +16,8 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^3.3.7",
+    "semantic": "^2.2.9",
+    "lodash": "^4.17.4",
     "angular": "^1.6.2",
     "angular-route": "^1.6.2",
     "angular-resource": "^1.6.2"
