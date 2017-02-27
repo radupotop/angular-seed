@@ -99,7 +99,7 @@ gulp.task('app-styles-prod', () => {
   return gulp.src(app.styles)
       .pipe(sourcemaps.init())
       .pipe(concat('app.min.css'))
-      .pipe(sass({outputStyle: 'compact'}))
+      .pipe(sass({outputStyle: 'compressed'}))
       .pipe(sourcemaps.write('maps'))
       .pipe(gulp.dest('dist'))
       .pipe(connect.reload());
